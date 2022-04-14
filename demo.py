@@ -4,10 +4,12 @@ from NewCRFDepth import NewCRFDepth
 import numpy as np
 import time
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
+print(f"using device {device}")
 max_depth = 10
 
-model = NewCRFDepth(version='large07', inv_depth=False, max_depth=max_depth)
-model = torch.nn.DataParallel(model)
+model = NewCRFDepth(version='large07', inv_depth=False, max_depth=max_depth).to(device)
+model = torch.nn.DataParallel(model).to(device)
 
 checkpoint = torch.load("model_nyu.ckpt")
 model.load_state_dict(checkpoint['model'])
@@ -30,8 +32,8 @@ while True:
 
     input_images = np.expand_dims(input_image, axis=0)
     input_images = np.transpose(input_images, (0, 3, 1, 2))
-    images = torch.from_numpy(input_images)
-    depth = model(images).detach().numpy()
+    images = torch.from_numpy(input_images).to(device)
+    depth = model(images).to("cpu").detach().numpy()
     depth = np.transpose(depth[0], (1,2,0))/max_depth * 255
 
 

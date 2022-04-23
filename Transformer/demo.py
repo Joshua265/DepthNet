@@ -3,6 +3,8 @@ import torch
 from NewCRFDepth import NewCRFDepth
 import numpy as np
 import time
+from sizeEstimator import SizeEstimator
+
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"using device {device}")
@@ -14,9 +16,19 @@ model = torch.nn.DataParallel(model).to(device)
 checkpoint = torch.load("model_nyu.ckpt")
 model.load_state_dict(checkpoint['model'])
 model.eval()
-cap = cv2.VideoCapture(1)
+# cap = cv2.VideoCapture(1)
+
+
+# Estimate Size
+se = SizeEstimator(model, input_size=(1,3,640,480))
+print(se.estimate_size())
+
+print(se.param_bits) # bits taken up by parameters
+print(se.forward_backward_bits) # bits stored for forward and backward
+print(se.input_bits) # bits for input
 
 while True:
+    break
 
     ret, raw_image = cap.read() #read one frame
     input_image = raw_image.astype(np.float32)

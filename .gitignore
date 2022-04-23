@@ -1,2 +1,3 @@
 __pycache__
-model_nyu.ckpt
+Transformer/model_nyu.ckpt
+DenseDepth/nyu.h5

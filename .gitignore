@@ -1,3 +1,4 @@
 __pycache__
 Transformer/model_nyu.ckpt
 DenseDepth/nyu.h5
+DenseDepth/depthmodel

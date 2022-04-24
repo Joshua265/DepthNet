@@ -38,10 +38,11 @@ while True:
 
     rgb_frame = cv2.applyColorMap(
         (pred[0]*255).astype(np.uint8), cv2.COLORMAP_RAINBOW)
-    cv2.imshow("image", raw_image)
-    cv2.imshow("depth", rgb_frame)
+    # cv2.imshow("image", raw_image)
+    # cv2.imshow("depth", rgb_frame)
     # cv2.waitKey(0)
-    
+    print(f"Time: {(time.time() - start_time)}s")
+    break
 
     counter = counter + 1
     if counter == 30:

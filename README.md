@@ -25,4 +25,4 @@ https://github.com/aliyun/NeWCRFs
 
 download tflite model:
 
-https://drive.google.com/file/d/10IPvNxoRJl2EaVGEVcnjqTjZNfcy5r4b/view?usp=sharing
+https://drive.google.com/file/d/19kedKo7f5--q-U9u1tApuHh5f0wKL160/view?usp=sharing
